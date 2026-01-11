@@ -570,3 +570,97 @@ begin
   
   SelectMidiMusicFlags := Flags;
 end;
+
+function SoundFlagsToStr(SoundFlags: Byte) : String; 
+var
+  S: String;
+begin
+    S := '';
+    if (SoundFlags and SND_PCSPK) <> 0 then S := S + 'PC Speaker, ';
+    if (SoundFlags and SND_TANDY) <> 0 then S := S + 'Tandy, ';
+    if (SoundFlags and SND_CMS) <> 0 then S := S + 'CMS/Game Blaster, ';
+    if (SoundFlags and SND_ADLIB) <> 0 then S := S + 'AdLib, ';
+    if (SoundFlags and SND_MT32) <> 0 then S := S + 'MT-32, ';
+    if (SoundFlags and SND_SB) <> 0 then S := S + 'Sound Blaster, ';
+    if (SoundFlags and SND_COVOX) <> 0 then S := S + 'Covox/DSS, ';
+    if Length(S) > 2 then Delete(S, Length(S)-1, 2);
+
+    SoundFlagsToStr := S;
+end;
+
+
+{ Convert FM sound flags to string }
+function SoundFMToStr(SoundFlags: Byte) : String; 
+var
+  S: String;
+begin
+    S := '';
+    if (SoundFlags and SND_FM_SB) <> 0 then S := S + 'Sound Blaster, ';
+    if (SoundFlags and SND_FM_SBPRO) <> 0 then S := S + 'Sound Blaster Pro, ';
+    if (SoundFlags and SND_FM_SB16) <> 0 then S := S + 'Sound Blaster 16, ';
+    if (SoundFlags and SND_FM_AWE) <> 0 then S := S + 'Sound Blaster AWE, ';
+    if (SoundFlags and SND_FM_PAS) <> 0 then S := S + 'Pro Audio Spectrum, ';
+    if (SoundFlags and SND_FM_PAS16) <> 0 then S := S + 'Pro Audio Spectrum 16, ';
+    if Length(S) > 2 then Delete(S, Length(S)-1, 2);
+
+    SoundFMToStr := S;
+end;
+
+{ Convert MIDI sound flags to string }
+function SoundMIDIToStr(Flags: Byte): string;
+var
+  S: string;
+begin
+  S := '';
+  if (Flags and SND_MIDI_MT32) <> 0 then S := S + 'Roland MT-32, ';
+  if (Flags and SND_MIDI_CM64) <> 0 then S := S + 'Roland CM-64, ';
+  if (Flags and SND_MIDI_SC55) <> 0 then S := S + 'General MIDI, ';
+  if (Flags and SND_MIDI_GUS) <> 0 then S := S + 'Gravis Ultrasound, ';
+  if (Flags and SND_MIDI_ESS) <> 0 then S := S + 'ESS Audiodrive, ';
+  if (Flags and SND_MIDI_SSCAPE) <> 0 then S := S + 'Ensoniq Soundscape, ';
+  if Length(S) > 2 then Delete(S, Length(S)-1, 2);
+
+  SoundMIDIToStr := S;
+end;
+
+procedure DisplayGameDetail(Game: GameRecord);
+begin
+    ClrScr;
+    TextColor(White);
+    GotoXY(1, 1); Write('========================================');
+    GotoXY(1, 2); Write('           ', Game.Title);
+    GotoXY(1, 3); Write('----------------------------------------');
+    TextColor(LightGray);
+    GotoXY(1, 5); Write('Publisher:      ', Game.Publisher);
+    GotoXY(1, 6); Write('Year:           ', Game.Year);
+    GotoXY(1, 7); Write('Genre:          ', GenreCodeToName(Game.GenreCode));
+    GotoXY(1, 8); Write('Sound:          ', SoundFlagsToStr(Game.SoundFlags));
+    GotoXY(1, 9); Write('Video:          ', VideoModeFlagsToStr(Game.GraphicsFlags));
+    GotoXY(1, 10); Write('Path:           ', Game.Path);
+    GotoXY(1, 11); Write('Command:        ', Game.Command);
+    GotoXY(1, 12); Write('Arguments:      ', Game.Args);
+    GotoXY(1, 13); Write('Requires CD:    ');
+    if Game.RequiresCD then Write('Yes') else Write('No');
+end;
+
+procedure DisplayGameDetail486(Game: GameRecord);
+begin
+    ClrScr;
+    TextColor(White);
+    GotoXY(1, 1); Write('========================================');
+    GotoXY(1, 2); Write('           ', Game.Title);
+    GotoXY(1, 3); Write('----------------------------------------');
+    TextColor(LightGray);
+    GotoXY(1, 5); Write('Publisher:      ', Game.Publisher);
+    GotoXY(1, 6); Write('Year:           ', Game.Year);
+    GotoXY(1, 7); Write('Genre:          ', GenreCodeToName(Game.GenreCode));
+    GotoXY(1, 8); Write('FM Music:       ', SoundFMToStr(Game.SoundFM));
+    GotoXY(1, 9); Write('MIDI Music:     ', SoundMIDIToStr(Game.SoundMIDI));
+    GotoXY(1, 10); Write('Video:          ', VideoModeFlagsToStr(Game.GraphicsFlags));
+    GotoXY(1, 11); Write('Path:           ', Game.Path);
+    GotoXY(1, 12); Write('Command:        ', Game.Command);
+    GotoXY(1, 13); Write('Arguments:      ', Game.Args);
+    GotoXY(1, 14); Write('Requires CD:    ');
+    if Game.RequiresCD then Write('Yes') else Write('No');
+    GotoXY(1, 15); Write('Slowdown Speed (SU): ', Game.SlowdownSU);
+end;

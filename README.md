@@ -9,12 +9,14 @@ A lightweight game launcher for DOS systems, designed to run on IBM PC XT and co
 - Built-in editor for managing game entries
 - Additive sound tag filtering (MT-32, SC-55, Sound Blaster, AdLib, PC Speaker)
 - Minimal memory footprint - exits completely before launching games
+- Stores first 250 games matching filters in memory, reloads after filter change
 
 ## Building
 
 ### Requirements
 - **Turbo Pascal 5.5 or later** (Turbo Pascal 7.0 recommended)
 - The code uses standard TP features and should compile on any TP 5.5+ compiler
+- Run this program in any DOS emulator or on any XT+ DOS machine
 
 ### Turbo Pascal
 ```
@@ -43,8 +45,9 @@ Or simply run `BUILD.BAT` to compile all executables.
 ### 486+ Systems (MENU486.EXE)
 1. Run `EDIT486.EXE` to add games
 2. Configure extended sound options (SB16, GUS, AWE32, etc.)
-3. Set CPU slowdown if needed for speed-sensitive games
-4. Run `MENU486.EXE` with dual FM/MIDI filtering
+3. Has extended graphic mode (SVGA)
+4. Set CPU slowdown if needed for speed-sensitive games
+5. Run `MENU486.EXE` with dual FM/MIDI filtering
 
 Add `MENU` (or `MENU486`) to your PATH in AUTOEXEC.BAT for easy return after game exit.
 
@@ -128,7 +131,7 @@ Many games support multiple modes (e.g., King's Quest 4: CGA + Tandy + EGA + VGA
 
 ## Genre Codes
 
-Genre is stored as a single byte (0-28) for efficiency:
+Genre is stored as a single byte (0-28) for efficiency. These match LaunchBox genres.
 
 0. (None) | 1. Action | 2. Adventure | 3. Beat 'em Up | 4. Board Game
 5. Casino | 6. Compilation | 7. Construction and Management Simulation
@@ -148,5 +151,26 @@ and appends it to the current game database.
 Game Title|Path|Executable|Switches|Legacy Sound|FM Music|MIDI Music|Publisher|Year|Genre|CD?
 SIMCITY 2000|C:\GAMES\SIMCITY2K|SC2000.EXE||48|32|Maxis|1993|8|Y
 
-## Required (for 486 mode)
+## Highly Recommended
 - SLOWDOWN: https://bretjohnson.us/ 
+- Turbo Pascal 5.5: https://winworldpc.com/product/turbo-pascal/5x
+
+## Snapshots
+
+### Core Screens
+![Main Menu](images/menu.png)
+![Game launched](images/run.png)
+![Search Option](images/search.png)
+![Game Detail](images/detail.png)
+![Game Detail (486)](images/detail486.png)
+
+### Edit Confirmation
+![Edit Confirm](images/edit-confirm.png)
+![Edit Confirm (486)](images/edit-confirm486.png)
+
+### Filter Screens
+![Legacy Sound Filter](images/filter-sound.png)
+![FM Music Filter](images/filter-fmmusic.png)
+![MIDI Music Filter](images/filter-midimusic.png)
+![Graphics Filter](images/filter-graphics.png)
+![Genre Filter](images/filter-genre.png)

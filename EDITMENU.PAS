@@ -160,6 +160,8 @@ begin
   WriteLn;
   WriteLn;
   
+  DisplayGameDetail(Game);
+  GotoXY(1, 18); 
   TextColor(Yellow);
   Write('Save this entry? (Y/N): ');
   if UpCase(ReadKey) <> 'Y' then

@@ -68,23 +68,6 @@ end;
 
   {$I MENUCORE.PAS}
 
-function SoundFlagsToStr(SoundFlags: Byte) : String; 
-var
-  S: String;
-begin
-    S := '';
-    if (SoundFlags and SND_PCSPK) <> 0 then S := S + 'PC Speaker, ';
-    if (SoundFlags and SND_TANDY) <> 0 then S := S + 'Tandy, ';
-    if (SoundFlags and SND_CMS) <> 0 then S := S + 'CMS/Game Blaster, ';
-    if (SoundFlags and SND_ADLIB) <> 0 then S := S + 'AdLib, ';
-    if (SoundFlags and SND_MT32) <> 0 then S := S + 'MT-32, ';
-    if (SoundFlags and SND_SB) <> 0 then S := S + 'Sound Blaster, ';
-    if (SoundFlags and SND_COVOX) <> 0 then S := S + 'Covox/DSS, ';
-    if Length(S) > 2 then Delete(S, Length(S)-1, 2);
-
-    SoundFlagsToStr := S;
-end;
-
 { Filter dialog }
 procedure DoFilter;
 var
@@ -151,22 +134,7 @@ begin
   if (Index < 1) or (Index > GameCount) then Exit;
   Game := Games^[Index];
   repeat
-    ClrScr;
-    TextColor(White);
-    GotoXY(1, 1); Write('========================================');
-    GotoXY(1, 2); Write('           ', Game.Title);
-    GotoXY(1, 3); Write('----------------------------------------');
-    TextColor(LightGray);
-    GotoXY(1, 5); Write('Publisher:      ', Game.Publisher);
-    GotoXY(1, 6); Write('Year:           ', Game.Year);
-    GotoXY(1, 7); Write('Genre:          ', GenreCodeToName(Game.GenreCode));
-    GotoXY(1, 8); Write('Sound:          ', SoundFlagsToStr(Game.SoundFlags));
-    GotoXY(1, 9); Write('Video:          ', VideoModeFlagsToStr(Game.GraphicsFlags));
-    GotoXY(1, 10); Write('Path:           ', Game.Path);
-    GotoXY(1, 11); Write('Command:        ', Game.Command);
-    GotoXY(1, 12); Write('Arguments:      ', Game.Args);
-    GotoXY(1, 13); Write('Requires CD:    ');
-    if Game.RequiresCD then Write('Yes') else Write('No');
+    DisplayGameDetail(Game);
     TextColor(White);
     GotoXY(1, 15); Write('[L] Launch Game      [Esc] Return to Menu');
     GotoXY(1, 17); Write('========================================');
