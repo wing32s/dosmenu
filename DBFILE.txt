@@ -1,0 +1,20 @@
+To use multiple database files, you can either:
+
+1. Call programs with filename parameter:
+   MENU TANDY.DAT
+   EDIT TANDY.DAT
+   MENU486 DOS486.DAT
+   EDIT486 DOS486.DAT
+
+2. Or create batch files for each database:
+
+   REM TANDY.BAT
+   @ECHO OFF
+   MENU TANDY.DAT
+
+   REM EDIT-TDY.BAT
+   @ECHO OFF
+   EDIT TANDY.DAT
+
+Note: Maximum 250 games per .DAT file due to 64KB DOS memory limits.
+Suggested files: TANDY.DAT, DOS486.DAT, PENTIUM.DAT
