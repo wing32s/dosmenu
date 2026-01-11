@@ -158,9 +158,13 @@ SIMCITY 2000|C:\GAMES\SIMCITY2K|SC2000.EXE||48|32|Maxis|1993|8|Y
 ## Snapshots
 
 ### Core Screens
+#### Main Menu
 ![Main Menu](images/menu.png)
+#### Game Launched
 ![Game launched](images/run.png)
+#### Search Option
 ![Search Option](images/search.png)
+#### Game Detail
 ![Game Detail](images/detail.png)
 ![Game Detail (486)](images/detail486.png)
 
@@ -169,8 +173,13 @@ SIMCITY 2000|C:\GAMES\SIMCITY2K|SC2000.EXE||48|32|Maxis|1993|8|Y
 ![Edit Confirm (486)](images/edit-confirm486.png)
 
 ### Filter Screens
+#### Legacy Sound
 ![Legacy Sound Filter](images/filter-sound.png)
+#### FM Music
 ![FM Music Filter](images/filter-fmmusic.png)
+#### MIDI Music
 ![MIDI Music Filter](images/filter-midimusic.png)
+#### Graphics
 ![Graphics Filter](images/filter-graphics.png)
+#### Genre
 ![Genre Filter](images/filter-genre.png)
